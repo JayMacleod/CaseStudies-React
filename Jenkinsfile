@@ -1,5 +1,5 @@
 echopipeline {
-    agent any
+    agent any 
 
         stage('Build') {
             steps {
@@ -50,5 +50,5 @@ echopipeline {
         }
 
     }
-}
+
 
