@@ -1,54 +1,45 @@
-echopipeline {
-    agent any 
-
-        stage('Build') {
+pipeline {
+    agent any    stages {
+        stage('Test') {
             steps {
-	        echo "Staging"
-            }
-        }
-
-        stage('Testing Environment') {
-            steps {
-                echo "Testing Environment"
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo "Deploy"
-            }
-        }
-
-        stage('Staging1') {
-
-          when{
-              expression{
-              env.BRANCH_NAME=='developer'
-              }
-          }
-            steps {
-                echo "Staging1"
-            }
-        }
-
-        stage('End2end Tests') {
-            steps {
-                echo "End2End Tests"
-            }
-        }
-
-        stage('Production') {
-
-            when{
-                expression{
-                env.BRANCH_NAME=='master'
+                    echo "testing"
                 }
             }
+        stage('Build') {
             steps {
-                echo "Production"
+                echo "building"
+                }
+            }
+        stage('Deploy') {
+            steps {
+                echo "hello"
             }
         }
-
+          stage('Testing Environment') {
+            steps {
+                    echo "testing environment"
+            }
+        }
+      stage('Staging') {
+		when {
+			expression {
+				env.BRANCH_NAME == 'Developer'
+			}
+		}
+            steps {
+                echo "staging if in Developer branch"
+            }
+        }
+      stage('Production') {
+	when {
+		expression {
+			env.BRANCH_NAME == 'master'
+		}
+	}
+            steps {
+                echo "production if in master branch"
+            }
+        }   
     }
 
-
+}
