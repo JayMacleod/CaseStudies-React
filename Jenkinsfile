@@ -1,17 +1,6 @@
 echopipeline {
     agent any
 
-environment {
-    VERSION = readMavenPom().getVersion()
-}
-
-    stages {
-        stage('Version'){
-            steps {
-                echo "${VERSION}"
-            }
-        }
-
         stage('Build') {
             steps {
 	        echo "Staging"
